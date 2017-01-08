@@ -1,5 +1,5 @@
 //   Chromis POS - The New Face of Open Source POS 
-//   Copyright (c) (c) 2015-2016 2016 Chromis , previous uniCenta & Openbravo POS works   
+//   Copyright (c) 2015 Chromis , previous uniCenta & Openbravo POS works   
 //
 //   This file is part of chromis oPOS
 //
@@ -20,21 +20,19 @@ report = new uk.chromis.pos.reports.PanelReportBean();
 
 report.setTitleKey("Menu.DailyScheduleReport");
 report.setReport("/uk/chromis/reports/dailyschedule");
-report.setResourceBundle("uk/chromis/reports/report_messages");
+report.setResourceBundle("uk/chromis/reports/dailyschedule_messages");
 
 report.setSentence("SELECT " +
                 "PEOPLE.NAME, " +
                 "LEAVES.STARTDATE, " +
                 "LEAVES.ENDDATE, " +
-                "CONCAT('',DATEDIFF(LEAVES.ENDDATE, LEAVES.STARTDATE)) AS TOTAL, " +
-                "(SELECT SITES.NAME FROM SITES WHERE SITES.GUID = LEAVES.SITEGUID) AS SITE " +
+                "CONCAT('',DATEDIFF(LEAVES.ENDDATE, LEAVES.STARTDATE)) AS TOTAL " +
                 "FROM PEOPLE LEFT JOIN LEAVES ON LEAVES.PPLID = PEOPLE.ID " +
                 "WHERE ?(QBF_FILTER) " +
                 "ORDER BY LEAVES.STARTDATE DESC ");
 
 report.addParameter("LEAVES.STARTDATE");
 report.addParameter("LEAVES.ENDDATE");
-report.addParameter("LEAVES.SITEGUID");
 
 paramdates = new uk.chromis.pos.reports.JParamsDatesInterval();
 
@@ -47,6 +45,5 @@ report.addField("NAME", uk.chromis.data.loader.Datas.STRING);
 report.addField("STARTDATE", uk.chromis.data.loader.Datas.TIMESTAMP);
 report.addField("ENDDATE", uk.chromis.data.loader.Datas.TIMESTAMP);
 report.addField("TOTAL", uk.chromis.data.loader.Datas.STRING);
-report.addField("SITE", uk.chromis.data.loader.Datas.STRING);
 
 report;

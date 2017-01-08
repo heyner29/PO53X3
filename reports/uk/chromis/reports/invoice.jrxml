@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticketsample" pageWidth="595" pageHeight="792" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="47b16757-0c83-4c13-8bd8-357ffab0fe21">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT Id, Nombre, Descripcion, Nit, Direccion
+		FROM datosfactura]]>
+	</queryString>
+	<field name="TICKET" class="uk.chromis.pos.ticket.TicketInfo"/>
+	<field name="PLACE" class="java.lang.String"/>
+	<field name="TAXESLOGIC" class="java.lang.Object"/>
+	<field name="ADDRESS" class="java.lang.String"/>
+	<field name="ADDRESS2" class="java.lang.String"/>
+	<field name="PHONE" class="java.lang.String"/>
+	<field name="REGION" class="java.lang.String"/>
+	<field name="PHONE2" class="java.lang.String"/>
+	<field name="POSTAL" class="java.lang.String"/>
+	<field name="CITY" class="java.lang.String"/>
+	<field name="FIRSTNAME" class="java.lang.String"/>
+	<field name="LASTNAME" class="java.lang.String"/>
+	<field name="Id" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="117" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="19" y="114" width="493" height="1" uuid="de273353-26ea-4973-a427-90a7f06af5f5"/>
+			</line>
+			<image scaleImage="RetainShape" hAlign="Center">
+				<reportElement key="image-2" stretchType="RelativeToTallestObject" x="19" y="0" width="347" height="93" uuid="41608d15-dfd6-437e-a2d3-06c44db1aad2"/>
+				<imageExpression><![CDATA["reports/uk/chromis/reports/logo.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-13" x="416" y="63" width="96" height="30" forecolor="#FF3333" uuid="38f05706-4953-48f7-b299-b583e063afa7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TICKET}.printId()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-14" x="414" y="19" width="65" height="21" uuid="40ff63ca-f551-48cb-ba56-7a14f333f54f"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Dialog" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TICKET}.printDate()]]></textFieldExpression>
+			</textField>
+			<rectangle radius="8">
+				<reportElement key="rectangle-18" mode="Transparent" x="375" y="-1" width="145" height="45" uuid="5dc51e3c-17fb-4045-9563-73fbdf6f4b82"/>
+			</rectangle>
+			<rectangle>
+				<reportElement key="rectangle-19" x="375" y="-1" width="145" height="20" backcolor="#33CC00" uuid="0c85564f-d99b-4989-a4ae-0e241d1b2658"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-43" mode="Transparent" x="381" y="1" width="132" height="21" forecolor="#FFFFFF" uuid="27fe244d-e66f-4b28-8992-795aa0d49a74"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<rectangle radius="8">
+				<reportElement key="rectangle-20" mode="Transparent" x="374" y="49" width="146" height="43" uuid="e53b4aba-c826-4442-a556-0863dfc8648b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement key="rectangle-21" x="374" y="48" width="146" height="16" backcolor="#33CC00" uuid="a2e5cbd9-0bb5-4ac7-b476-fe69dfc12ef5"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-44" x="375" y="49" width="141" height="18" forecolor="#FFFFFF" uuid="598c402b-aff6-4b9d-ae11-331355967bca"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CUENTA DE COBRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-45" x="385" y="67" width="31" height="30" forecolor="#000000" uuid="0cc7b61b-9a8b-4f19-8eaa-cde37a1bbd4f"/>
+				<textElement>
+					<font size="18" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-47" x="19" y="97" width="495" height="16" uuid="874c4f92-8a03-42e3-bc46-0c76eea402f6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Teléfono:  302 258 89 42                                                                      Nit. 8070719-5  Régimen Común
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="99" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-1" x="19" y="39" width="493" height="54" uuid="d500c9e2-db17-4bb6-8868-1c8acd01de88"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(
+$F{TICKET}.getLines()
+)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[JasperCompileManager.compileReport(
+net.sf.jasperreports.engine.xml.JRXmlLoader.load(getClass().getResourceAsStream(
+"/uk/chromis/reports/invoice_lines.jrxml"
+))
+)]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement key="line" x="19" y="36" width="493" height="1" uuid="52525eaf-18a4-4545-a2d2-5f6036a87ed7"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-9" x="96" y="4" width="177" height="16" uuid="29a260de-f2e0-4e73-b127-7ad9dc304d95">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TICKET}.getCustomer() != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TICKET}.getCustomer().getName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-10" x="391" y="2" width="119" height="18" uuid="1c811961-318b-4b4f-bdec-1f88fe5e50f7">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TICKET}.getCustomer() != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TICKET}.getCustomer().getTaxid()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-39" x="29" y="4" width="67" height="16" uuid="158260b9-7b6a-4a68-8de4-50dac80dfea0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-40" x="324" y="2" width="67" height="18" uuid="3aeb55dd-6f11-4b16-a35d-1ac89bfd05a8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[C.C:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-41" x="324" y="17" width="67" height="16" uuid="91f3aadd-043f-4762-8815-878c55a78c0b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-42" x="30" y="17" width="67" height="16" uuid="54a59d4c-dbf1-46c3-899b-f4bf9950dd6f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-11" x="96" y="17" width="177" height="16" uuid="de3ca566-a638-45cc-a186-bd5a64b600cf">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TICKET}.getCustomer() != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TICKET}.getCustomer().getAddress()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-12" x="391" y="17" width="119" height="16" uuid="c26d7324-b84a-4124-b3b5-543ac9256b2c">
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{TICKET}.getCustomer() != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TICKET}.getCustomer().getPhone()]]></textFieldExpression>
+			</textField>
+			<rectangle radius="8">
+				<reportElement key="rectangle-17" mode="Transparent" x="20" y="2" width="497" height="32" uuid="8e258ace-8562-4a1b-a0b6-2bb631663faa"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-52" x="11" y="22" width="90" height="18" uuid="ba19cf73-b5b4-4a8d-aed7-a47449d2e77f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Firma Vendedor:]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-2" x="105" y="37" width="153" height="1" uuid="f14536d3-1c56-41fc-bc10-3600fe66a599"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-53" x="295" y="22" width="72" height="18" uuid="ee23ec51-aac6-43bd-95a6-fc522c6d8bd1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Firma Cliente:]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-3" x="370" y="37" width="147" height="1" uuid="756fd418-9515-4a89-9b22-3997e89b174c"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-54" x="382" y="0" width="125" height="36" forecolor="#CCCCCC" uuid="398339b8-2d23-4ef1-a4b3-da2b9494867e"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Narrow" size="24" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ACEPTADA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-15" x="240" y="46" width="65" height="14" uuid="7d0da97a-a250-40b7-b97c-2e7c4ce7f910"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TICKET}.printTax()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-16" x="408" y="45" width="93" height="14" uuid="5fed5cb2-8f68-472b-b0b4-fc4747141597"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TICKET}.printTotal()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-17" x="65" y="46" width="71" height="14" uuid="daa985dd-1832-4b41-bf57-6b43973e08e5"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TICKET}.printSubTotal()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-55" x="15" y="47" width="50" height="14" uuid="344d4705-fbfe-4e36-bb30-e0cfc05360e6"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-56" x="199" y="47" width="41" height="14" uuid="b357ebc6-bd99-45bb-94e8-12e6eb399e3f"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-57" x="376" y="46" width="32" height="14" uuid="b7703de7-abe2-459a-910c-d89c35f09e34"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<rectangle radius="8">
+				<reportElement key="rectangle-22" mode="Transparent" x="9" y="43" width="134" height="21" uuid="5392d50b-f83f-4048-acd8-0d8045f3fc1a"/>
+			</rectangle>
+			<rectangle radius="8">
+				<reportElement key="rectangle-23" mode="Transparent" x="193" y="43" width="119" height="21" uuid="9dc5b2ef-edef-4da4-be7b-9ef882a231d0"/>
+			</rectangle>
+			<rectangle radius="8">
+				<reportElement key="rectangle-24" mode="Transparent" x="369" y="42" width="137" height="21" uuid="712c9871-ddfc-47d1-b068-0a48c7c4bca9"/>
+			</rectangle>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

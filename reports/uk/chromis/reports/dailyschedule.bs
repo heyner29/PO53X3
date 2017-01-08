@@ -18,20 +18,21 @@
 
 report = new uk.chromis.pos.reports.PanelReportBean();
 
-report.setTitleKey("Menu.DailyPresenceReport");
-report.setReport("/uk/chromis/reports/dailypresence");
-report.setResourceBundle("uk/chromis/reports/dailypresence_messages");
+report.setTitleKey("Menu.DailyScheduleReport");
+report.setReport("/uk/chromis/reports/dailyschedule");
+report.setResourceBundle("uk/chromis/reports/dailyschedule_messages_es");
 
 report.setSentence("SELECT " +
                 "PEOPLE.NAME, " +
-                "SHIFTS.STARTSHIFT, " +
-                "SHIFTS.ENDSHIFT, " +
-                "CONCAT('',TIMEDIFF(SHIFTS.ENDSHIFT, SHIFTS.STARTSHIFT)) AS TOTAL " +
-                "FROM PEOPLE LEFT JOIN SHIFTS ON SHIFTS.PPLID = PEOPLE.ID " +
-                "WHERE ?(QBF_FILTER) ");
+                "LEAVES.STARTDATE, " +
+                "LEAVES.ENDDATE, " +
+                "CONCAT('',DATEDIFF(LEAVES.ENDDATE, LEAVES.STARTDATE)) AS TOTAL " +
+                "FROM PEOPLE LEFT JOIN LEAVES ON LEAVES.PPLID = PEOPLE.ID " +
+                "WHERE ?(QBF_FILTER) " +
+                "ORDER BY LEAVES.STARTDATE DESC ");
 
-report.addParameter("SHIFTS.STARTSHIFT");
-report.addParameter("SHIFTS.ENDSHIFT");
+report.addParameter("LEAVES.STARTDATE");
+report.addParameter("LEAVES.ENDDATE");
 
 paramdates = new uk.chromis.pos.reports.JParamsDatesInterval();
 
@@ -41,8 +42,8 @@ paramdates.setEndDate(uk.chromis.beans.DateUtils.getTodayMinutes());
 report.addQBFFilter(paramdates);
 
 report.addField("NAME", uk.chromis.data.loader.Datas.STRING);
-report.addField("STARTSHIFT", uk.chromis.data.loader.Datas.TIMESTAMP);
-report.addField("ENDSHIFT", uk.chromis.data.loader.Datas.TIMESTAMP);
+report.addField("STARTDATE", uk.chromis.data.loader.Datas.TIMESTAMP);
+report.addField("ENDDATE", uk.chromis.data.loader.Datas.TIMESTAMP);
 report.addField("TOTAL", uk.chromis.data.loader.Datas.STRING);
 
 report;

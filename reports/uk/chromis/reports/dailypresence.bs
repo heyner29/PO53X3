@@ -1,5 +1,5 @@
 //   Chromis POS - The New Face of Open Source POS 
-//   Copyright (c) (c) 2015-2016 2016 Chromis , previous uniCenta & Openbravo POS works   
+//   Copyright (c) 2015 Chromis , previous uniCenta & Openbravo POS works   
 //
 //   This file is part of chromis oPOS
 //
@@ -20,7 +20,7 @@ report = new uk.chromis.pos.reports.PanelReportBean();
 
 report.setTitleKey("Menu.DailyPresenceReport");
 report.setReport("/uk/chromis/reports/dailypresence");
-report.setResourceBundle("uk/chromis/reports/dailypresence_messages");
+report.setResourceBundle("uk/chromis/reports/dailypresence_messages_es");
 
 report.setSentence("SELECT " +
                 "PEOPLE.NAME, " +

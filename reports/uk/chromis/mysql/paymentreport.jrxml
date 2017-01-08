@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-07-14T21:41:31 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saletaxes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="d6d5eef4-9ea7-4cbf-ab91-2da5796bcf66">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -255,7 +253,7 @@
 				<textElement>
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{PAYMENT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{PAYMENT}.equals("cashin")?"(entrada) Efectivo":($F{PAYMENT}.equals("cashout")?"(salida) Efectivo":($F{PAYMENT}.equals("cash")?"Efectivo":($F{PAYMENT}.equals("magcard")?"Tarjeta":($F{PAYMENT}.equals("cheque")?"Cheque":($F{PAYMENT}.equals("paperin")?"Vale":($F{PAYMENT}.equals("debt")?"A Cuenta":($F{PAYMENT}.equals("free")?"Sin Cargo":($F{PAYMENT}.equals("debtpaid")?"Pago a Cuenta":"Banco")))))))))]]></textFieldExpression>
 			</textField>
 			<textField pattern="##0.00" isBlankWhenNull="false">
 				<reportElement key="textField-28" x="435" y="0" width="100" height="13" uuid="c014d36f-f1ae-4baf-86a7-ddc76075a5e8"/>

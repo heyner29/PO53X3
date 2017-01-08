@@ -1,5 +1,5 @@
 //   Chromis POS - The New Face of Open Source POS 
-//   Copyright (c) (c) 2015-2016 2016 Chromis , previous uniCenta & Openbravo POS works   
+//   Copyright (c) 2015 Chromis , previous uniCenta & Openbravo POS works   
 //
 //   This file is part of chromis oPOS
 //
@@ -15,30 +15,24 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with Chromis POS.  If not, see <http://www.gnu.org/licenses/>.
-//
-//   MySQL  July 2016 
-//
-
 
 report = new uk.chromis.pos.reports.PanelReportBean();
 
 report.setTitleKey("Menu.DailyPresenceReport");
 report.setReport("/uk/chromis/reports/dailypresence");
-report.setResourceBundle("uk/chromis/reports/report_messages");
+report.setResourceBundle("uk/chromis/reports/dailypresence_messages");
 
 report.setSentence("SELECT " +
                 "PEOPLE.NAME, " +
                 "SHIFTS.STARTSHIFT, " +
                 "SHIFTS.ENDSHIFT, " +
-                "({fn TIMESTAMPDIFF(SQL_TSI_SECOND, SHIFTS.STARTSHIFT, SHIFTS.ENDSHIFT)}) AS TOTAL, " +                
-                "(SELECT SITES.NAME FROM SITES WHERE SITES.GUID = PEOPLE.SITEGUID) AS SITE " +
+                "CONCAT('',TIMEDIFF(SHIFTS.ENDSHIFT, SHIFTS.STARTSHIFT)) AS TOTAL " +
                 "FROM PEOPLE LEFT JOIN SHIFTS ON SHIFTS.PPLID = PEOPLE.ID " +
-                "WHERE ?(QBF_FILTER) " + 
-                "ORDER BY SITE ");
+                "WHERE ?(QBF_FILTER) " +
+                "ORDER BY PEOPLE.NAME ASC, SHIFTS.ENDSHIFT ASC");
 
 report.addParameter("SHIFTS.STARTSHIFT");
 report.addParameter("SHIFTS.ENDSHIFT");
-report.addParameter("PEOPLE.SITEGUID");
 
 paramdates = new uk.chromis.pos.reports.JParamsDatesInterval();
 
@@ -51,6 +45,5 @@ report.addField("NAME", uk.chromis.data.loader.Datas.STRING);
 report.addField("STARTSHIFT", uk.chromis.data.loader.Datas.TIMESTAMP);
 report.addField("ENDSHIFT", uk.chromis.data.loader.Datas.TIMESTAMP);
 report.addField("TOTAL", uk.chromis.data.loader.Datas.STRING);
-report.addField("SITE", uk.chromis.data.loader.Datas.STRING);
 
 report;

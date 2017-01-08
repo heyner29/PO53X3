@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticketsample_lines" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="invoicetax_lines_messages" uuid="f26e92ee-6f5e-4ae3-9a46-ab24708218c8">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Row">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style backcolor="#DCFFDF" pdfFontName="FreeSans" pdfEncoding="Cp1251"/>
+		</conditionalStyle>
+	</style>
+	<field name="productName" class="java.lang.String"/>
+	<field name="_THIS" class="uk.chromis.pos.ticket.TicketLineInfo"/>
+	<variable name="ROW_COUNT" class="java.lang.Integer" resetType="Column" incrementType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{productName}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
+	<variable name="variable1" class="java.lang.String" calculation="Variance"/>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" mode="Opaque" x="0" y="0" width="530" height="30" backcolor="#AFFFB4" uuid="93087f99-a772-4b8c-80de-8b90544ef9f8"/>
+			</rectangle>
+			<textField>
+				<reportElement key="staticText-2" mode="Transparent" x="213" y="0" width="45" height="30" uuid="8e415181-e862-4353-b1cf-777b95b785aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.priceVAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-5" mode="Transparent" x="178" y="0" width="35" height="30" uuid="254f4a4b-d217-4180-978e-ef99b57b5325"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.units}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-2" mode="Transparent" x="258" y="0" width="55" height="30" uuid="07054faa-3c4c-4760-87a5-d36a24d38135"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.subtotalwithoutVAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-4" mode="Transparent" x="393" y="0" width="55" height="30" uuid="34074e03-d9be-44d1-8ada-88a5ef2cac86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-4" mode="Transparent" x="313" y="0" width="80" height="15" uuid="58cc9d38-5e56-42d6-863e-21c082325785"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.VAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-4" mode="Transparent" x="313" y="15" width="35" height="15" uuid="ad94cf48-8ca3-426a-90db-3105e709f778"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.rate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-4" mode="Transparent" x="348" y="15" width="45" height="15" uuid="cc18e752-7ad5-41a1-9e82-c3eb2bb516a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.totaltax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-4" mode="Transparent" x="448" y="0" width="80" height="15" uuid="cf939e21-d27b-4433-9d45-5207f4dac914"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.excise}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-2" mode="Transparent" x="152" y="0" width="26" height="30" uuid="b80ec2f5-7bc2-4f83-b2a7-97c5d2914498"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.UOM}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement key="rectangle-1" x="0" y="30" width="530" height="10" backcolor="#DCFFDF" uuid="6d09e820-1016-4322-95af-0e20da82ab6c"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="0" y="30" width="22" height="10" uuid="b745d38f-d853-40cf-8975-e438c210dcdf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="348" y="30" width="45" height="10" uuid="b4153101-24c5-4664-8dd8-6238f7443f28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="313" y="30" width="35" height="10" uuid="8076b766-db0d-44f5-9a7c-796b599e5173"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[7]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="258" y="30" width="55" height="10" uuid="64287258-8f54-4b35-b92f-6f4735a5bca3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="213" y="30" width="45" height="10" uuid="af436c2c-e152-49f9-aff0-ec7be2ee924e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="178" y="30" width="35" height="10" uuid="8d3c61e5-57e3-4f5d-bc19-da4334e4fd9e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="152" y="30" width="26" height="10" uuid="81f36a21-11ee-475f-b3f8-8e96a3c552f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="22" y="30" width="130" height="10" uuid="1c86d277-8581-49e2-82f5-0f4aa8e09abf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="393" y="30" width="55" height="10" uuid="65de4abd-e4ea-48f5-bec4-686eeb7387d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[9]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="483" y="30" width="45" height="10" uuid="af422969-7a79-425e-b234-200fa50156f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Transparent" x="448" y="30" width="35" height="10" uuid="8e4363f4-1379-4754-bd25-91eba5e63829"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[10]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="22" y="0" width="130" height="30" uuid="86771973-53b0-40b3-935e-3551846ba8c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="21" height="30" uuid="71106547-a420-453a-a10e-0bd5ef2207ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.countnumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-4" mode="Transparent" x="483" y="15" width="45" height="15" uuid="4cdbf129-f38f-497b-82d8-6dffbce1e18e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.totaltax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="staticText-4" mode="Transparent" x="448" y="15" width="35" height="15" uuid="dd0c3e08-7e86-4238-a2ac-5041d0f963eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{label.rate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="530" height="20" uuid="a7ab7ed8-b553-4cb0-ba25-023f987ed2e0"/>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-3" x="213" y="3" width="45" height="15" uuid="e9bc1831-add2-4583-9f5f-77bdc6a7b617"/>
+					<textElement textAlignment="Right">
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{_THIS}.printPriceTax()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-4" x="178" y="3" width="35" height="15" uuid="b7f5ce17-dcbe-4c41-8c0e-fa026fd61834"/>
+					<textElement textAlignment="Right">
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{_THIS}.printMultiply()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-3" x="348" y="3" width="45" height="15" uuid="987f701e-ecad-4fda-8372-bbecc7da9949"/>
+					<textElement textAlignment="Right">
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{_THIS}.printTax()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="3" width="22" height="15" uuid="98c870c6-1dd9-475f-97f3-8c828313e3f7"/>
+					<textElement textAlignment="Center">
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-1" x="22" y="3" width="130" height="15" uuid="e15244cd-fd37-4e33-9859-5cde7b0a3c04"/>
+					<textElement>
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-2" x="258" y="3" width="55" height="15" uuid="947f3327-e188-46d2-bc31-92bfc6dea095"/>
+					<textElement textAlignment="Right">
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{_THIS}.printSubValue()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-2" x="313" y="3" width="35" height="15" uuid="3b709873-6532-4b17-b0d9-842514143814"/>
+					<textElement textAlignment="Right">
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{_THIS}.printTaxRate()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField-3" x="393" y="3" width="55" height="15" uuid="9a3b8fb1-1457-42a2-8e48-6e6c7b5a2df5"/>
+					<textElement textAlignment="Right">
+						<font size="8" pdfFontName="FreeSans" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{_THIS}.printValue()]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="1" height="20" uuid="e0abc469-20a1-4df5-875f-1831ccbf0adc"/>
+				</line>
+				<line>
+					<reportElement x="529" y="0" width="1" height="20" uuid="edd9662d-1266-4f07-95a7-99b7a150fc56"/>
+				</line>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="530" height="1" uuid="8c7cb294-ae61-4951-92db-77e191573a43"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

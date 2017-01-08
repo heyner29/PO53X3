@@ -346,10 +346,10 @@
             <column name="NAME" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="STARTDATE" type="timestamp">
+            <column name="STARTDATE" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="ENDDATE" type="timestamp">
+            <column name="ENDDATE" type="datetime">
                 <constraints nullable="false"/>
             </column>
             <column name="NOTES" type="varchar(255)"/>
